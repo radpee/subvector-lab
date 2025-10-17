@@ -28,14 +28,16 @@ bool push_back(subvector *qv, int d) {
         qv->mas = new_mas;
         qv->capacity = new_capacity;
     }
-    qv->mas[qv->top++] = d;
+     qv->top = qv->top+1;
+    qv->mas[qv->top] = d;
     return true;
 }
 int pop_back(subvector *qv) {
     if (qv->top == 0) {
         return 0;
     }
-    return qv->mas[--qv->top];
+     qv->top=qv->top-1;
+    return qv->mas[qv->top];
 }
 bool resize(subvector *qv, unsigned int new_capacity) {
     if (new_capacity == 0) {
