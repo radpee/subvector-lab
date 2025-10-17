@@ -1,11 +1,6 @@
 #include <iostream>
 #include <random>
 #include <chrono>
-struct subvector {
-     int *mas;
-     unsigned int top;
-     unsigned int capacity;
-};
 bool init(subvector *qv) {
     qv-> mas = nullptr;
     qv-> top = 0;
@@ -28,15 +23,15 @@ bool push_back(subvector *qv, int d) {
         qv->mas = new_mas;
         qv->capacity = new_capacity;
     }
-     qv->top = qv->top+1;
     qv->mas[qv->top] = d;
+     qv->top++;
     return true;
 }
 int pop_back(subvector *qv) {
     if (qv->top == 0) {
         return 0;
     }
-     qv->top=qv->top-1;
+    qv->top--;
     return qv->mas[qv->top];
 }
 bool resize(subvector *qv, unsigned int new_capacity) {
@@ -74,7 +69,6 @@ void destructor(subvector *qv) {
     delete[] qv->mas;
     init(qv);
 }
-
 using std::cout;
 using std::endl;
 double get_time()
